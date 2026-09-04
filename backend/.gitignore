@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.Python
+
+# Virtualenv
+venv/
+.venv/
+
+# Env / secrets
+.env
+
+# Django
+*.sqlite3
+staticfiles/
+media/
+
+# ML artifacts (regenerable: python -m ml.generate_dataset && python -m ml.train)
+ml/model.pkl
+ml/oil_well_data.csv
+
+# OS
+.DS_Store

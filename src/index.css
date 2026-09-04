@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-bg text-text font-sans antialiased;
+  }
+
+  /* Numbers should read as tabular/mono where used */
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Visible keyboard focus — keyboard users get a clear flame ring; mouse
+     clicks (no :focus-visible) stay clean. Applies app-wide. */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  [tabindex]:focus-visible,
+  [role='switch']:focus-visible,
+  [role='dialog'] :focus-visible {
+    outline: 2px solid theme('colors.primary');
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+}
+
+@layer components {
+  /* Shared form + button primitives (dark theme, existing tokens). */
+  .input {
+    @apply w-full rounded-input border border-border bg-bg px-3 py-2 text-text outline-none transition-colors placeholder:text-muted focus:border-primary;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-input bg-primary px-4 py-2 text-sm font-semibold text-bg transition-[transform,opacity] hover:scale-[1.01] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:scale-100;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-input border border-border px-4 py-2 text-sm text-text transition-colors hover:bg-bg active:bg-bg/70 disabled:opacity-60;
+  }
+}
+
+/* Respect prefers-reduced-motion globally as a safety net.
+   Framer Motion is also configured to honor it via useReducedMotion. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
